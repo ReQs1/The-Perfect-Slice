@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { User } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 import { useLogoutMutation } from "../../../hooks/useLogoutMutation";
 import { UserType } from "../../../types/User";
 
@@ -8,33 +9,17 @@ export function LoginButton() {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    function handleClick(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClick);
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
+  useClickOutside({
+    ref,
+    handler: () => setIsOpen(false),
+  });
 
   return (
     <div className="relative" ref={ref}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 focus:outline-none cursor-pointer"
+        className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 cursor-pointer"
+        aria-label="Toggle authentication modal"
       >
         <User className="w-5 h-5 text-gray-600" />
       </button>
@@ -54,42 +39,22 @@ export function LoginButton() {
   );
 }
 
-type UserAvatarProps = {
-  user: UserType;
-};
-
-export function UserAvatar({ user }: UserAvatarProps) {
+export function UserAvatar({ user }: { user: UserType }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { mutate } = useLogoutMutation();
 
-  useEffect(() => {
-    function handleClick(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClick);
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
+  useClickOutside({
+    ref,
+    handler: () => setIsOpen(false),
+  });
 
   return (
     <div className="relative flex items-center" ref={ref}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
         className="overflow-hidden w-8 h-8 rounded-full cursor-pointer"
+        aria-label="Toggle authentication modal"
       >
         <img
           src={user.picture}
