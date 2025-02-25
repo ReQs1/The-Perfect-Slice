@@ -14,15 +14,14 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as mainAppMainLayoutImport } from './routes/(main-app)/_main-layout'
-import { Route as dashboardDashboardLayoutImport } from './routes/(dashboard)/_dashboard-layout'
 import { Route as mainAppMainLayoutIndexImport } from './routes/(main-app)/_main-layout/index'
+import { Route as mainAppMainLayoutLoginImport } from './routes/(main-app)/_main-layout/login'
+import { Route as mainAppMainLayoutCalculatorImport } from './routes/(main-app)/_main-layout/calculator'
 import { Route as mainAppMainLayoutAboutImport } from './routes/(main-app)/_main-layout/about'
-import { Route as dashboardDashboardLayoutDashboardImport } from './routes/(dashboard)/_dashboard-layout/dashboard'
 
 // Create Virtual Routes
 
 const mainAppImport = createFileRoute('/(main-app)')()
-const dashboardImport = createFileRoute('/(dashboard)')()
 
 // Create/Update Routes
 
@@ -31,19 +30,9 @@ const mainAppRoute = mainAppImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const dashboardRoute = dashboardImport.update({
-  id: '/(dashboard)',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const mainAppMainLayoutRoute = mainAppMainLayoutImport.update({
   id: '/_main-layout',
   getParentRoute: () => mainAppRoute,
-} as any)
-
-const dashboardDashboardLayoutRoute = dashboardDashboardLayoutImport.update({
-  id: '/_dashboard-layout',
-  getParentRoute: () => dashboardRoute,
 } as any)
 
 const mainAppMainLayoutIndexRoute = mainAppMainLayoutIndexImport.update({
@@ -52,37 +41,29 @@ const mainAppMainLayoutIndexRoute = mainAppMainLayoutIndexImport.update({
   getParentRoute: () => mainAppMainLayoutRoute,
 } as any)
 
+const mainAppMainLayoutLoginRoute = mainAppMainLayoutLoginImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => mainAppMainLayoutRoute,
+} as any)
+
+const mainAppMainLayoutCalculatorRoute =
+  mainAppMainLayoutCalculatorImport.update({
+    id: '/calculator',
+    path: '/calculator',
+    getParentRoute: () => mainAppMainLayoutRoute,
+  } as any)
+
 const mainAppMainLayoutAboutRoute = mainAppMainLayoutAboutImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => mainAppMainLayoutRoute,
 } as any)
 
-const dashboardDashboardLayoutDashboardRoute =
-  dashboardDashboardLayoutDashboardImport.update({
-    id: '/dashboard',
-    path: '/dashboard',
-    getParentRoute: () => dashboardDashboardLayoutRoute,
-  } as any)
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/(dashboard)': {
-      id: '/(dashboard)'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof dashboardImport
-      parentRoute: typeof rootRoute
-    }
-    '/(dashboard)/_dashboard-layout': {
-      id: '/(dashboard)/_dashboard-layout'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof dashboardDashboardLayoutImport
-      parentRoute: typeof dashboardRoute
-    }
     '/(main-app)': {
       id: '/(main-app)'
       path: '/'
@@ -97,18 +78,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof mainAppMainLayoutImport
       parentRoute: typeof mainAppRoute
     }
-    '/(dashboard)/_dashboard-layout/dashboard': {
-      id: '/(dashboard)/_dashboard-layout/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof dashboardDashboardLayoutDashboardImport
-      parentRoute: typeof dashboardDashboardLayoutImport
-    }
     '/(main-app)/_main-layout/about': {
       id: '/(main-app)/_main-layout/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof mainAppMainLayoutAboutImport
+      parentRoute: typeof mainAppMainLayoutImport
+    }
+    '/(main-app)/_main-layout/calculator': {
+      id: '/(main-app)/_main-layout/calculator'
+      path: '/calculator'
+      fullPath: '/calculator'
+      preLoaderRoute: typeof mainAppMainLayoutCalculatorImport
+      parentRoute: typeof mainAppMainLayoutImport
+    }
+    '/(main-app)/_main-layout/login': {
+      id: '/(main-app)/_main-layout/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof mainAppMainLayoutLoginImport
       parentRoute: typeof mainAppMainLayoutImport
     }
     '/(main-app)/_main-layout/': {
@@ -123,40 +111,17 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-interface dashboardDashboardLayoutRouteChildren {
-  dashboardDashboardLayoutDashboardRoute: typeof dashboardDashboardLayoutDashboardRoute
-}
-
-const dashboardDashboardLayoutRouteChildren: dashboardDashboardLayoutRouteChildren =
-  {
-    dashboardDashboardLayoutDashboardRoute:
-      dashboardDashboardLayoutDashboardRoute,
-  }
-
-const dashboardDashboardLayoutRouteWithChildren =
-  dashboardDashboardLayoutRoute._addFileChildren(
-    dashboardDashboardLayoutRouteChildren,
-  )
-
-interface dashboardRouteChildren {
-  dashboardDashboardLayoutRoute: typeof dashboardDashboardLayoutRouteWithChildren
-}
-
-const dashboardRouteChildren: dashboardRouteChildren = {
-  dashboardDashboardLayoutRoute: dashboardDashboardLayoutRouteWithChildren,
-}
-
-const dashboardRouteWithChildren = dashboardRoute._addFileChildren(
-  dashboardRouteChildren,
-)
-
 interface mainAppMainLayoutRouteChildren {
   mainAppMainLayoutAboutRoute: typeof mainAppMainLayoutAboutRoute
+  mainAppMainLayoutCalculatorRoute: typeof mainAppMainLayoutCalculatorRoute
+  mainAppMainLayoutLoginRoute: typeof mainAppMainLayoutLoginRoute
   mainAppMainLayoutIndexRoute: typeof mainAppMainLayoutIndexRoute
 }
 
 const mainAppMainLayoutRouteChildren: mainAppMainLayoutRouteChildren = {
   mainAppMainLayoutAboutRoute: mainAppMainLayoutAboutRoute,
+  mainAppMainLayoutCalculatorRoute: mainAppMainLayoutCalculatorRoute,
+  mainAppMainLayoutLoginRoute: mainAppMainLayoutLoginRoute,
   mainAppMainLayoutIndexRoute: mainAppMainLayoutIndexRoute,
 }
 
@@ -176,51 +141,49 @@ const mainAppRouteWithChildren =
 
 export interface FileRoutesByFullPath {
   '/': typeof mainAppMainLayoutIndexRoute
-  '/dashboard': typeof dashboardDashboardLayoutDashboardRoute
   '/about': typeof mainAppMainLayoutAboutRoute
+  '/calculator': typeof mainAppMainLayoutCalculatorRoute
+  '/login': typeof mainAppMainLayoutLoginRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof mainAppMainLayoutIndexRoute
-  '/dashboard': typeof dashboardDashboardLayoutDashboardRoute
   '/about': typeof mainAppMainLayoutAboutRoute
+  '/calculator': typeof mainAppMainLayoutCalculatorRoute
+  '/login': typeof mainAppMainLayoutLoginRoute
+  '/': typeof mainAppMainLayoutIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/(dashboard)': typeof dashboardRouteWithChildren
-  '/(dashboard)/_dashboard-layout': typeof dashboardDashboardLayoutRouteWithChildren
   '/(main-app)': typeof mainAppRouteWithChildren
   '/(main-app)/_main-layout': typeof mainAppMainLayoutRouteWithChildren
-  '/(dashboard)/_dashboard-layout/dashboard': typeof dashboardDashboardLayoutDashboardRoute
   '/(main-app)/_main-layout/about': typeof mainAppMainLayoutAboutRoute
+  '/(main-app)/_main-layout/calculator': typeof mainAppMainLayoutCalculatorRoute
+  '/(main-app)/_main-layout/login': typeof mainAppMainLayoutLoginRoute
   '/(main-app)/_main-layout/': typeof mainAppMainLayoutIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/about'
+  fullPaths: '/' | '/about' | '/calculator' | '/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/about'
+  to: '/about' | '/calculator' | '/login' | '/'
   id:
     | '__root__'
-    | '/(dashboard)'
-    | '/(dashboard)/_dashboard-layout'
     | '/(main-app)'
     | '/(main-app)/_main-layout'
-    | '/(dashboard)/_dashboard-layout/dashboard'
     | '/(main-app)/_main-layout/about'
+    | '/(main-app)/_main-layout/calculator'
+    | '/(main-app)/_main-layout/login'
     | '/(main-app)/_main-layout/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  dashboardRoute: typeof dashboardRouteWithChildren
   mainAppRoute: typeof mainAppRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  dashboardRoute: dashboardRouteWithChildren,
   mainAppRoute: mainAppRouteWithChildren,
 }
 
@@ -234,21 +197,7 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/(dashboard)",
         "/(main-app)"
-      ]
-    },
-    "/(dashboard)": {
-      "filePath": "(dashboard)",
-      "children": [
-        "/(dashboard)/_dashboard-layout"
-      ]
-    },
-    "/(dashboard)/_dashboard-layout": {
-      "filePath": "(dashboard)/_dashboard-layout.tsx",
-      "parent": "/(dashboard)",
-      "children": [
-        "/(dashboard)/_dashboard-layout/dashboard"
       ]
     },
     "/(main-app)": {
@@ -262,15 +211,21 @@ export const routeTree = rootRoute
       "parent": "/(main-app)",
       "children": [
         "/(main-app)/_main-layout/about",
+        "/(main-app)/_main-layout/calculator",
+        "/(main-app)/_main-layout/login",
         "/(main-app)/_main-layout/"
       ]
     },
-    "/(dashboard)/_dashboard-layout/dashboard": {
-      "filePath": "(dashboard)/_dashboard-layout/dashboard.tsx",
-      "parent": "/(dashboard)/_dashboard-layout"
-    },
     "/(main-app)/_main-layout/about": {
       "filePath": "(main-app)/_main-layout/about.tsx",
+      "parent": "/(main-app)/_main-layout"
+    },
+    "/(main-app)/_main-layout/calculator": {
+      "filePath": "(main-app)/_main-layout/calculator.tsx",
+      "parent": "/(main-app)/_main-layout"
+    },
+    "/(main-app)/_main-layout/login": {
+      "filePath": "(main-app)/_main-layout/login.tsx",
       "parent": "/(main-app)/_main-layout"
     },
     "/(main-app)/_main-layout/": {

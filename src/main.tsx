@@ -1,4 +1,6 @@
 import "./styles/main.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
@@ -19,13 +21,19 @@ declare module "@tanstack/react-router" {
   }
 }
 
+// create a tanstack query client
+const queryClient = new QueryClient();
+
 // Render the app
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <Toaster />
+      </QueryClientProvider>
     </StrictMode>
   );
 }
