@@ -3,7 +3,7 @@ import { User } from "lucide-react";
 import { useRef, useState } from "react";
 import { useClickOutside } from "../../../hooks/useClickOutside";
 import { useLogoutMutation } from "../../../hooks/useLogoutMutation";
-import { UserType } from "../../../hooks/useAuth";
+import { type UserType } from "../../../hooks/useAuth";
 
 export function LoginButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,14 +18,14 @@ export function LoginButton() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 cursor-pointer"
+        className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200"
         aria-label="Toggle authentication modal"
       >
-        <User className="w-5 h-5 text-gray-600" />
+        <User className="h-5 w-5 text-gray-600" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+        <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white py-1 shadow-lg">
           <Link
             to="/login"
             onClick={() => setIsOpen(false)}
@@ -53,7 +53,7 @@ export function UserAvatar({ user }: { user: UserType }) {
     <div className="relative flex items-center" ref={ref}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="overflow-hidden w-8 h-8 rounded-full cursor-pointer"
+        className="h-8 w-8 cursor-pointer overflow-hidden rounded-full"
         aria-label="Toggle authentication modal"
       >
         <img
@@ -64,7 +64,7 @@ export function UserAvatar({ user }: { user: UserType }) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-2 translate-y-1/2 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+        <div className="absolute top-2 right-0 z-10 mt-2 w-48 translate-y-1/2 rounded-md bg-white py-1 shadow-lg">
           {/* TODO: add dashboard for admins */}
           {/* {user.is_admin && (
             <Link
@@ -76,7 +76,7 @@ export function UserAvatar({ user }: { user: UserType }) {
           )} */}
           <button
             onClick={() => mutate()}
-            className="w-full text-left cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            className="w-full cursor-pointer px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
           >
             Log out
           </button>

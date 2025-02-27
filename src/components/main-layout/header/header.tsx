@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { LoginButton, UserAvatar } from "./auth-buttons";
 import { SmallSpinner } from "../../spinners";
-import { UserType } from "../../../hooks/useAuth";
+import { type UserType } from "../../../hooks/useAuth";
 
 function Header({
   userData,
@@ -11,12 +11,12 @@ function Header({
   isLoading: boolean;
 }) {
   return (
-    <header className="py-4 border-b-1 border-b-gray-200 px-10">
-      <nav className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between max-w-[1800px] mx-auto">
-        <Link to="/" className="font-bold text-2xl">
+    <header className="sticky top-0 border-b-1 border-b-gray-200 bg-white px-10 py-4">
+      <nav className="mx-auto flex max-w-[1800px] flex-col items-center gap-3 sm:flex-row sm:justify-between">
+        <Link to="/" className="text-2xl font-bold">
           The Perfect Pizza
         </Link>
-        <ul className="flex gap-4 items-center sm:gap-6">
+        <ul className="flex items-center gap-4 sm:gap-6">
           <li>
             <Link
               to="/about"
