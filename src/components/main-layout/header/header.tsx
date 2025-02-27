@@ -12,39 +12,35 @@ function Header({
 }) {
   return (
     <header className="py-4 border-b-1 border-b-gray-200 px-10">
-      <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between max-w-[1800px] mx-auto">
-        <h1 className="font-bold text-2xl">The Perfect Pizza</h1>
-        <nav className="flex gap-4 items-center sm:gap-6">
-          <Link
-            to="/"
-            activeProps={{
-              style: {
-                color: "oklch(0.637 0.237 25.331)",
-              },
-            }}
-          >
-            Home
-          </Link>
-          <Link
-            to="/about"
-            activeProps={{
-              style: {
-                color: "oklch(0.637 0.237 25.331)",
-              },
-            }}
-          >
-            About
-          </Link>
-          <Link
-            to="/calculator"
-            activeProps={{
-              style: {
-                color: "oklch(0.637 0.237 25.331)",
-              },
-            }}
-          >
-            Calculator
-          </Link>
+      <nav className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between max-w-[1800px] mx-auto">
+        <Link to="/" className="font-bold text-2xl">
+          The Perfect Pizza
+        </Link>
+        <ul className="flex gap-4 items-center sm:gap-6">
+          <li>
+            <Link
+              to="/about"
+              activeProps={{
+                style: {
+                  color: "oklch(0.637 0.237 25.331)",
+                },
+              }}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/calculator"
+              activeProps={{
+                style: {
+                  color: "oklch(0.637 0.237 25.331)",
+                },
+              }}
+            >
+              Calculator
+            </Link>
+          </li>
           {isLoading ? (
             <SmallSpinner />
           ) : userData ? (
@@ -52,8 +48,8 @@ function Header({
           ) : (
             <LoginButton />
           )}
-        </nav>
-      </div>
+        </ul>
+      </nav>
     </header>
   );
 }

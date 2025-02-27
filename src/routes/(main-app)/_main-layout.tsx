@@ -14,7 +14,7 @@ function RouteComponent() {
     <>
       <Header userData={userData} isLoading={isLoading} />
 
-      <main className="flex grow">
+      <main className="flex grow px-4 py-10">
         <Outlet />
       </main>
 
