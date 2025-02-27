@@ -1,11 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { UserType } from "../types/User";
+
+export type UserType = {
+  id: number;
+  name: string;
+  email: string;
+  picture: string;
+  is_admin: boolean;
+};
 
 type ErrorResponse = {
   error: string;
 };
 
-const API_BASE_URL = import.meta.env.BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_SERVER_URL;
 
 async function fetchWithCredentials<T>(
   endpoint: string,
@@ -36,12 +43,10 @@ async function getUserData(): Promise<UserType> {
       error instanceof Error &&
       (error.message === "No token provided" || error.message === "jwt expired")
     ) {
-      // Try to refresh the token
       await fetchWithCredentials("/auth/refresh-token", {
         method: "POST",
       });
 
-      // Retry getting user data after refresh
       const { user } = await fetchWithCredentials<{ user: UserType }>(
         "/auth/user"
       );

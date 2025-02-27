@@ -5,5 +5,5 @@ export const Route = createFileRoute("/(main-app)/_main-layout/calculator")({
 });
 
 function RouteComponent() {
-  return <div className="w-full">meow</div>;
+  return <div className="w-full flex justify-center">meow</div>;
 }

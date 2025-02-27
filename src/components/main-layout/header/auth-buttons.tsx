@@ -3,7 +3,7 @@ import { User } from "lucide-react";
 import { useRef, useState } from "react";
 import { useClickOutside } from "../../../hooks/useClickOutside";
 import { useLogoutMutation } from "../../../hooks/useLogoutMutation";
-import { UserType } from "../../../types/User";
+import { UserType } from "../../../hooks/useAuth";
 
 export function LoginButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +65,15 @@ export function UserAvatar({ user }: { user: UserType }) {
 
       {isOpen && (
         <div className="absolute right-0 top-2 translate-y-1/2 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+          {/* TODO: add dashboard for admins */}
+          {/* {user.is_admin && (
+            <Link
+              to="/dashboard"
+              className="block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              Dashboard
+            </Link>
+          )} */}
           <button
             onClick={() => mutate()}
             className="w-full text-left cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
