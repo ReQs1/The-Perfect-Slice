@@ -9,9 +9,15 @@ export function SectionTitle({ children }: { children: React.ReactNode }) {
 export function SectionParagraph({
   children,
   style,
+  wrapBalance,
 }: {
   children: React.ReactNode;
   style?: string;
+  wrapBalance: boolean;
 }) {
-  return <p className={`text-lg ${style}`}>{children}</p>;
+  return (
+    <p className={`text-lg ${style} ${wrapBalance ? "text-balance" : ""}`}>
+      {children}
+    </p>
+  );
 }
