@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { LoginButton, UserAvatar } from "./auth-buttons";
-import { SmallSpinner } from "../../spinners";
 import { type UserType } from "../../../hooks/useAuth";
 
 function Header({
@@ -41,12 +40,10 @@ function Header({
               Calculator
             </Link>
           </li>
-          {isLoading ? (
-            <SmallSpinner />
-          ) : userData ? (
-            <UserAvatar user={userData} />
-          ) : (
+          {isLoading || !userData ? (
             <LoginButton />
+          ) : (
+            <UserAvatar user={userData} />
           )}
         </ul>
       </nav>

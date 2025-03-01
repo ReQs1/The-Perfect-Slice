@@ -9,7 +9,7 @@ function calculatorInformation() {
         </p>
         <ul className="list-disc pl-5">
           <li>Flour: 100% (base for all other percentages)</li>
-          <li>Water: 59%</li>
+          <li>Water: 61%</li>
           <li>Salt: 3%</li>
           <li>Yeast: 0.06% for fresh yeast, or 0.02% for instant dry yeast</li>
         </ul>

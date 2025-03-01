@@ -59,7 +59,7 @@ export function UserAvatar({ user }: { user: UserType }) {
         <img
           src={user.picture}
           referrerPolicy="no-referrer"
-          alt="User's google icon"
+          alt="User's avatar"
         />
       </button>
 

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { fetchWithCredentials } from "../utils/fetch-with-credentials";
 
 export type UserType = {
   id: number;
@@ -12,30 +13,10 @@ type ErrorResponse = {
   error: string;
 };
 
-const API_BASE_URL = import.meta.env.VITE_SERVER_URL;
-
-async function fetchWithCredentials<T>(
-  endpoint: string,
-  options?: RequestInit
-): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...options,
-    credentials: "include",
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.error || "Request failed");
-  }
-
-  return data;
-}
-
 async function getUserData(): Promise<UserType> {
   try {
     const { user } = await fetchWithCredentials<{ user: UserType }>(
-      "/auth/user"
+      "/auth/user",
     );
     return user;
   } catch (error) {
@@ -48,7 +29,7 @@ async function getUserData(): Promise<UserType> {
       });
 
       const { user } = await fetchWithCredentials<{ user: UserType }>(
-        "/auth/user"
+        "/auth/user",
       );
       return user;
     }
