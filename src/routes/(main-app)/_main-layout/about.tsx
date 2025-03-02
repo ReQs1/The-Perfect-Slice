@@ -10,7 +10,7 @@ export const Route = createFileRoute("/(main-app)/_main-layout/about")({
   component: About,
 });
 
-//TODO: change placeholder text
+//TODO: change placeholder text in each section
 
 function About() {
   return (
