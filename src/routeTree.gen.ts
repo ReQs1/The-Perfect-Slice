@@ -18,6 +18,7 @@ import { Route as mainAppMainLayoutIndexImport } from './routes/(main-app)/_main
 import { Route as mainAppMainLayoutLoginImport } from './routes/(main-app)/_main-layout/login'
 import { Route as mainAppMainLayoutCalculatorImport } from './routes/(main-app)/_main-layout/calculator'
 import { Route as mainAppMainLayoutAboutImport } from './routes/(main-app)/_main-layout/about'
+import { Route as mainAppMainLayoutPostsIndexSlugImport } from './routes/(main-app)/_main-layout/posts/_index.$slug'
 
 // Create Virtual Routes
 
@@ -59,6 +60,13 @@ const mainAppMainLayoutAboutRoute = mainAppMainLayoutAboutImport.update({
   path: '/about',
   getParentRoute: () => mainAppMainLayoutRoute,
 } as any)
+
+const mainAppMainLayoutPostsIndexSlugRoute =
+  mainAppMainLayoutPostsIndexSlugImport.update({
+    id: '/posts/_index/$slug',
+    path: '/posts/$slug',
+    getParentRoute: () => mainAppMainLayoutRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -106,6 +114,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof mainAppMainLayoutIndexImport
       parentRoute: typeof mainAppMainLayoutImport
     }
+    '/(main-app)/_main-layout/posts/_index/$slug': {
+      id: '/(main-app)/_main-layout/posts/_index/$slug'
+      path: '/posts/$slug'
+      fullPath: '/posts/$slug'
+      preLoaderRoute: typeof mainAppMainLayoutPostsIndexSlugImport
+      parentRoute: typeof mainAppMainLayoutImport
+    }
   }
 }
 
@@ -116,6 +131,7 @@ interface mainAppMainLayoutRouteChildren {
   mainAppMainLayoutCalculatorRoute: typeof mainAppMainLayoutCalculatorRoute
   mainAppMainLayoutLoginRoute: typeof mainAppMainLayoutLoginRoute
   mainAppMainLayoutIndexRoute: typeof mainAppMainLayoutIndexRoute
+  mainAppMainLayoutPostsIndexSlugRoute: typeof mainAppMainLayoutPostsIndexSlugRoute
 }
 
 const mainAppMainLayoutRouteChildren: mainAppMainLayoutRouteChildren = {
@@ -123,6 +139,7 @@ const mainAppMainLayoutRouteChildren: mainAppMainLayoutRouteChildren = {
   mainAppMainLayoutCalculatorRoute: mainAppMainLayoutCalculatorRoute,
   mainAppMainLayoutLoginRoute: mainAppMainLayoutLoginRoute,
   mainAppMainLayoutIndexRoute: mainAppMainLayoutIndexRoute,
+  mainAppMainLayoutPostsIndexSlugRoute: mainAppMainLayoutPostsIndexSlugRoute,
 }
 
 const mainAppMainLayoutRouteWithChildren =
@@ -144,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof mainAppMainLayoutAboutRoute
   '/calculator': typeof mainAppMainLayoutCalculatorRoute
   '/login': typeof mainAppMainLayoutLoginRoute
+  '/posts/$slug': typeof mainAppMainLayoutPostsIndexSlugRoute
 }
 
 export interface FileRoutesByTo {
@@ -151,6 +169,7 @@ export interface FileRoutesByTo {
   '/calculator': typeof mainAppMainLayoutCalculatorRoute
   '/login': typeof mainAppMainLayoutLoginRoute
   '/': typeof mainAppMainLayoutIndexRoute
+  '/posts/$slug': typeof mainAppMainLayoutPostsIndexSlugRoute
 }
 
 export interface FileRoutesById {
@@ -161,13 +180,14 @@ export interface FileRoutesById {
   '/(main-app)/_main-layout/calculator': typeof mainAppMainLayoutCalculatorRoute
   '/(main-app)/_main-layout/login': typeof mainAppMainLayoutLoginRoute
   '/(main-app)/_main-layout/': typeof mainAppMainLayoutIndexRoute
+  '/(main-app)/_main-layout/posts/_index/$slug': typeof mainAppMainLayoutPostsIndexSlugRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/calculator' | '/login'
+  fullPaths: '/' | '/about' | '/calculator' | '/login' | '/posts/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/calculator' | '/login' | '/'
+  to: '/about' | '/calculator' | '/login' | '/' | '/posts/$slug'
   id:
     | '__root__'
     | '/(main-app)'
@@ -176,6 +196,7 @@ export interface FileRouteTypes {
     | '/(main-app)/_main-layout/calculator'
     | '/(main-app)/_main-layout/login'
     | '/(main-app)/_main-layout/'
+    | '/(main-app)/_main-layout/posts/_index/$slug'
   fileRoutesById: FileRoutesById
 }
 
@@ -213,7 +234,8 @@ export const routeTree = rootRoute
         "/(main-app)/_main-layout/about",
         "/(main-app)/_main-layout/calculator",
         "/(main-app)/_main-layout/login",
-        "/(main-app)/_main-layout/"
+        "/(main-app)/_main-layout/",
+        "/(main-app)/_main-layout/posts/_index/$slug"
       ]
     },
     "/(main-app)/_main-layout/about": {
@@ -230,6 +252,10 @@ export const routeTree = rootRoute
     },
     "/(main-app)/_main-layout/": {
       "filePath": "(main-app)/_main-layout/index.tsx",
+      "parent": "/(main-app)/_main-layout"
+    },
+    "/(main-app)/_main-layout/posts/_index/$slug": {
+      "filePath": "(main-app)/_main-layout/posts/_index.$slug.tsx",
       "parent": "/(main-app)/_main-layout"
     }
   }

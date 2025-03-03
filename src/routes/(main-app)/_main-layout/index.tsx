@@ -1,52 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Post from "../../../components/main-layout/homepage/Post";
 import MainWrapper from "../../../components/main-layout/main-wrapper";
-import { useQuery } from "@tanstack/react-query";
-import { client } from "../../../sanity/client";
+import { useFetchPosts } from "../../../hooks/useFetchPosts";
 
 export const Route = createFileRoute("/(main-app)/_main-layout/")({
   component: Index,
 });
 
-const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
-  _id,
-  title,
-  publishedAt,
-  "imageUrl": image.asset->url
-}`;
-
-type Post = {
-  _id: string;
-  title: string;
-  publishedAt: Date;
-  imageUrl: string;
-};
-
 function Index() {
-  const { data: posts = [] } = useQuery<Post[]>({
-    queryKey: ["posts"],
-    queryFn: async () => {
-      return await client.fetch<Post[]>(POSTS_QUERY);
-    },
-    staleTime: 5 * 60 * 1000,
-    retry: 1,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: true,
-  });
-
-  // TODO: remove console log
-  console.log(posts);
-
+  const { data: posts = [] } = useFetchPosts();
   return (
     <MainWrapper maxWidth="max-w-4xl">
-      {posts && posts.length > 0 ? (
-        posts?.map((post) => (
-          <div key={post._id}>
-            <img src={post.imageUrl} alt="meow" />
-          </div>
-        ))
-      ) : (
-        <p>No posts founds</p>
-      )}
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8">
+        {posts.length > 0 ? (
+          posts.map((post) => <Post key={post._id} post={post} />)
+        ) : (
+          <p>No posts yet</p>
+        )}
+      </div>
     </MainWrapper>
   );
 }
