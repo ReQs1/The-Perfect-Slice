@@ -16,7 +16,7 @@ function Header({
           The Perfect Pizza
         </Link>
         <ul className="flex items-center gap-4 sm:gap-6">
-          <li>
+          <li className="transition-colors hover:text-red-500">
             <Link
               to="/about"
               activeProps={{
@@ -28,7 +28,7 @@ function Header({
               About
             </Link>
           </li>
-          <li>
+          <li className="transition-colors hover:text-red-500">
             <Link
               to="/calculator"
               activeProps={{

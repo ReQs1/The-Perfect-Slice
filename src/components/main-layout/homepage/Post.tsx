@@ -19,7 +19,7 @@ const Post = ({ post }: { post: Post }) => {
       aria-label={`Read more about ${post.title}`}
       className="block transform transition-transform duration-200 hover:scale-[1.02]"
     >
-      <article className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-shadow duration-200 hover:shadow-xl">
+      <article className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-shadow duration-200 hover:shadow-xl">
         <div className="aspect-video w-full overflow-hidden">
           <img
             className="h-full w-full object-cover transition-transform duration-200 hover:scale-105"
@@ -30,7 +30,9 @@ const Post = ({ post }: { post: Post }) => {
         </div>
 
         <div className="flex grow flex-col gap-2 p-3">
-          <h2 className="text-xl font-bold text-gray-900">{post.title}</h2>
+          <h2 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-red-500">
+            {post.title}
+          </h2>
 
           <p className="mb-4 flex items-center gap-2 text-sm text-gray-600">
             <Calendar size={16} className="text-gray-400" />
