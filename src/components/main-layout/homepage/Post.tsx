@@ -1,16 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { Calendar, Heart, MessageSquareText } from "lucide-react";
 import { type Post } from "../../../hooks/useFetchPosts";
+import { formatDate } from "../../../lib/formatDate";
 
 const Post = ({ post }: { post: Post }) => {
-  const formattedPublishDate = new Date(post.publishedAt).toLocaleDateString(
-    "en-GB",
-    {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    },
-  );
+  const formattedPublishDate = formatDate(post.publishedAt);
 
   return (
     <Link

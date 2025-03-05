@@ -13,11 +13,8 @@ function Index() {
   return (
     <MainWrapper maxWidth="max-w-4xl">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8">
-        {posts.length > 0 ? (
-          posts.map((post) => <Post key={post._id} post={post} />)
-        ) : (
-          <p>No posts yet</p>
-        )}
+        {posts.length > 0 &&
+          posts.map((post) => <Post key={post._id} post={post} />)}
       </div>
     </MainWrapper>
   );

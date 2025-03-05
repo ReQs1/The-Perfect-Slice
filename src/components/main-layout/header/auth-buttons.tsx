@@ -65,15 +65,6 @@ export function UserAvatar({ user }: { user: UserType }) {
 
       {isOpen && (
         <div className="absolute top-2 right-0 z-10 mt-2 w-48 translate-y-1/2 rounded-md bg-white py-1 shadow-lg">
-          {/* TODO: add dashboard for admins */}
-          {/* {user.is_admin && (
-            <Link
-              to="/dashboard"
-              className="block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              Dashboard
-            </Link>
-          )} */}
           <button
             onClick={() => mutate()}
             className="w-full cursor-pointer px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
