@@ -10,7 +10,7 @@ function Header({
   isLoading: boolean;
 }) {
   return (
-    <header className="sticky top-0 border-b-1 border-b-gray-200 bg-white px-10 py-4">
+    <header className="sticky top-0 z-[99] border-b-1 border-b-gray-200 bg-white px-10 py-4">
       <nav className="mx-auto flex max-w-[1800px] flex-col items-center gap-3 sm:flex-row sm:justify-between">
         <Link to="/" className="text-2xl font-bold">
           The Perfect Pizza

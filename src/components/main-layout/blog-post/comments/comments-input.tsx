@@ -1,8 +1,9 @@
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "@tanstack/react-router";
-import { LogIn, Send } from "lucide-react";
+import { LogIn } from "lucide-react";
+import CommentForm from "@/components/main-layout/blog-post/comments/comments-new-comment-form";
 
-function CommentsInput() {
+function CommentsInput({ postId }: { postId: string }) {
   const { data: userData } = useAuth();
   const currentPath = useLocation().pathname;
 
@@ -13,16 +14,7 @@ function CommentsInput() {
         src={userData.picture}
         alt="User's avatar"
       />
-      <form className="flex w-full items-center justify-between rounded-2xl border border-gray-300 px-4 py-2 outline-red-500 focus-within:outline-2">
-        <input
-          className="grow focus:outline-0"
-          type="text"
-          placeholder="Add a comment..."
-        />
-        <button className="cursor-pointer">
-          <Send className="text-red-500 hover:text-red-600" />
-        </button>
-      </form>
+      <CommentForm postId={postId} />
     </div>
   ) : (
     <div className="flex items-center justify-between rounded-xl bg-gray-100 px-6 py-4">

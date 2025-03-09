@@ -1,19 +1,16 @@
 import CommentsInput from "@/components/main-layout/blog-post/comments/comments-input";
+import CommentsList from "@/components/main-layout/blog-post/comments/comments-list";
 
-function Comments() {
+function Comments({ postId }: { postId: string }) {
   return (
     <>
       <h2 className="text-2xl font-bold text-[rgb(16,24,40)]">Comments</h2>
 
-      <CommentsInput />
+      <CommentsInput postId={postId} />
 
-      <CommentsList />
+      <CommentsList postId={postId} />
     </>
   );
 }
 
 export default Comments;
-
-const CommentsList = () => {
-  return <div>meow</div>;
-};

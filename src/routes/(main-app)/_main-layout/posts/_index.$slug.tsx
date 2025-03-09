@@ -47,7 +47,7 @@ function RouteComponent() {
           <ImagesGallery post={post} />
 
           {/* comments */}
-          <Comments />
+          <Comments postId={post._id} />
         </article>
       </MainWrapper>
     );
