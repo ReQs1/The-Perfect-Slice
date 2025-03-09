@@ -1,11 +1,13 @@
 import { PortableText } from "@portabletext/react";
 import { createFileRoute, useParams } from "@tanstack/react-router";
-import ImagesGallery from "../../../../components/main-layout/blog-post/images-gallery";
-import NotFoundPost from "../../../../components/main-layout/blog-post/not-found";
-import PostHeader from "../../../../components/main-layout/blog-post/post-header";
-import MainWrapper from "../../../../components/main-layout/main-wrapper";
-import { Spinner } from "../../../../components/spinners";
-import { usePostInfo } from "../../../../hooks/usePostInfo";
+
+import { usePostInfo } from "@/hooks/usePostInfo";
+import { Spinner } from "@/components/spinners";
+import NotFoundPost from "@/components/main-layout/blog-post/not-found";
+import MainWrapper from "@/components/main-layout/main-wrapper";
+import PostHeader from "@/components/main-layout/blog-post/post-header";
+import ImagesGallery from "@/components/main-layout/blog-post/images-gallery";
+import Comments from "@/components/main-layout/blog-post/comments/comments";
 
 export const Route = createFileRoute(
   "/(main-app)/_main-layout/posts/_index/$slug",
@@ -20,8 +22,6 @@ function RouteComponent() {
   });
 
   const { data: post, error, isLoading } = usePostInfo(slug);
-
-  console.log(post);
 
   if (error) {
     return <NotFoundPost error={error} />;
@@ -39,13 +39,15 @@ function RouteComponent() {
       <MainWrapper maxWidth="max-w-4xl">
         <article className="grid gap-8">
           <PostHeader post={post} />
+
           <div className="prose">
             {Array.isArray(post.body) && <PortableText value={post.body} />}
           </div>
 
-          <h2 className="text-2xl font-bold text-[rgb(16,24,40)]">Gallery</h2>
-
           <ImagesGallery post={post} />
+
+          {/* comments */}
+          <Comments />
         </article>
       </MainWrapper>
     );

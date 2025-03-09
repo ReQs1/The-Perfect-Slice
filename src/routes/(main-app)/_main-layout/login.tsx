@@ -8,7 +8,7 @@ export const Route = createFileRoute("/(main-app)/_main-layout/login")({
 
 function RouteComponent() {
   return (
-    <div className="flex items-center justify-center flex-col w-full">
+    <div className="flex w-full flex-col items-center justify-center">
       <a
         href={`${API_BASE_URL}/auth/google`}
         className="flex items-center gap-2 rounded bg-white px-4 py-2 shadow hover:shadow-md"

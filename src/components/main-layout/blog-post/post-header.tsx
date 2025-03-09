@@ -1,14 +1,19 @@
+import { usePostEngagement } from "@/hooks/usePostEngagement";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Heart } from "lucide-react";
-import { urlFor } from "../../../sanity/imageBuilder";
-import { formatDate } from "../../../lib/formatDate";
-import { DetailedPost } from "../../../hooks/usePostInfo";
+import { ArrowLeft } from "lucide-react";
+
+import { DisLikeButton, LikeButton } from "./like-buttons";
+import { DetailedPost } from "@/hooks/usePostInfo";
+import { formatDate } from "@/lib/formatDate";
+import { urlFor } from "@/sanity/imageBuilder";
 
 function PostHeader({ post }: { post: DetailedPost }) {
+  const { data: postEngagement } = usePostEngagement(post._id);
+
   return (
     <header>
       <Link
-        className="mb-8 flex items-center gap-1 text-left text-red-500 transition-colors hover:text-red-600"
+        className="mb-8 flex max-w-fit items-center gap-1 text-left text-red-500 transition-colors hover:text-red-600"
         to="/"
       >
         <span>
@@ -20,16 +25,17 @@ function PostHeader({ post }: { post: DetailedPost }) {
         <h1 className="text-3xl font-bold">{post.title}</h1>
         <div className="flex justify-between">
           <p className="text-gray-600">{formatDate(post.publishedAt)}</p>
-          <button className="flex cursor-pointer items-center gap-1 text-gray-600">
-            <span>
-              <Heart
-                strokeWidth={1.5}
-                size={20}
-                className="hover:text-red-500"
-              />
-            </span>
-            12
-          </button>
+          {postEngagement?.isLikedByUser ? (
+            <DisLikeButton
+              likesCount={postEngagement.likesCount}
+              postId={post._id}
+            />
+          ) : (
+            <LikeButton
+              likesCount={postEngagement?.likesCount}
+              postId={post._id}
+            />
+          )}
         </div>
         <img
           src={urlFor(post.image).width(900).height(500).url()}

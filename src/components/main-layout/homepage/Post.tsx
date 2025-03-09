@@ -2,9 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { Calendar, Heart, MessageSquareText } from "lucide-react";
 import { type Post } from "../../../hooks/useFetchPosts";
 import { formatDate } from "../../../lib/formatDate";
+import { usePostEngagement } from "@/hooks/usePostEngagement";
 
 const Post = ({ post }: { post: Post }) => {
   const formattedPublishDate = formatDate(post.publishedAt);
+  const { data: postEngagement } = usePostEngagement(post._id);
 
   return (
     <Link
@@ -35,12 +37,16 @@ const Post = ({ post }: { post: Post }) => {
 
           <div className="mt-auto flex gap-4 text-sm text-gray-600">
             <p className="flex items-center gap-1">
-              <Heart size={16} className="text-red-500" />
-              <span>24</span>
+              <Heart
+                size={16}
+                className="text-red-500"
+                fill={postEngagement?.isLikedByUser ? "#fb2c36" : "white"}
+              />
+              <span>{postEngagement?.likesCount}</span>
             </p>
             <p className="flex items-center gap-1">
               <MessageSquareText size={16} className="text-blue-500" />
-              <span>24</span>
+              <span>{postEngagement?.commentsCount}</span>
             </p>
           </div>
         </div>
