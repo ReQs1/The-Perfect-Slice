@@ -15,7 +15,7 @@ function Index() {
     <MainWrapper maxWidth="max-w-4xl">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8">
         {isLoading && (
-          <div>
+          <div className="flex justify-center">
             <Spinner />
           </div>
         )}
