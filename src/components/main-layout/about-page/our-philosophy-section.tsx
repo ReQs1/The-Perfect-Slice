@@ -24,6 +24,7 @@ function OurPhilosophySection() {
             className="max-h-[300px] w-full rounded-lg object-cover"
             src="/about-page/pizza-philosophy-image.webp"
             alt="Pizza from Miedziany Piec Częstochowa"
+            loading="lazy"
           />
         </div>
       </div>
