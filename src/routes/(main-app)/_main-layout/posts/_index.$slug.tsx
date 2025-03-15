@@ -9,10 +9,44 @@ import PostHeader from "@/components/main-layout/blog-post/post-header";
 import ImagesGallery from "@/components/main-layout/blog-post/images-gallery";
 import Comments from "@/components/main-layout/blog-post/comments/comments";
 
+const formatSlug = (slug: string) => {
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export const Route = createFileRoute(
   "/(main-app)/_main-layout/posts/_index/$slug",
 )({
   component: RouteComponent,
+  head: (ctx) => ({
+    meta: [
+      {
+        title: `${formatSlug(ctx.params.slug)} | Slice of Life`,
+      },
+      {
+        name: "description",
+        content:
+          "Discover pizza recipes, techniques and tips on Slice of Life Pizza Blog",
+      },
+
+      {
+        property: "og:title",
+        content: `${formatSlug(ctx.params.slug)} | Slice of Life`,
+      },
+      {
+        property: "og:description",
+        content:
+          "Discover pizza recipes, techniques and tips on Slice of Life Pizza Blog",
+      },
+      { property: "og:type", content: "article" },
+      {
+        property: "og:url",
+        content: `https://sliceoflife.pizza/posts/${ctx.params.slug}`,
+      },
+    ],
+  }),
 });
 
 function RouteComponent() {

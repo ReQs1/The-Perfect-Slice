@@ -24,7 +24,6 @@ function WhyStartedSection() {
             className="max-h-[300px] w-full rounded-lg"
             src="/about-page/why-started-image.webp"
             alt="Pizza from Neapolska Częstochowa"
-            loading="lazy"
           />
         </div>
       </div>

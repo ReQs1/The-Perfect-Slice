@@ -5,7 +5,6 @@ function WhoAreWeSection() {
     <Section>
       <img
         className="max-h-[450px] w-full rounded-lg"
-        loading="lazy"
         src="/about-page/header-image.webp"
         alt="Neapolitan pizza with wood fired oven in the background"
       />
