@@ -10,9 +10,9 @@ export const Route = createFileRoute("/(main-app)/_main-layout/login")({
       {
         name: "description",
         content:
-          "Sign in to Slice of Life Pizza Blog to comment, save recipes and join our pizza-loving community.",
+          "Sign in to The Perfect Slice Blog to comment, save recipes and join our pizza-loving community.",
       },
-      { title: "Login | Slice of Life Pizza Blog" },
+      { title: "Login | The Perfect Slice" },
     ],
   }),
 });

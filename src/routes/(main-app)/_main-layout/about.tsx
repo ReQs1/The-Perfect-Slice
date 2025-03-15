@@ -13,21 +13,9 @@ export const Route = createFileRoute("/(main-app)/_main-layout/about")({
       {
         name: "description",
         content:
-          "Learn about us, the pizza-obsessed couple behind Slice of Life pizza blog, and our journey into the world of homemade pizza.",
+          "Learn about us, the pizza-obsessed couple behind The Perfect Slice pizza blog, and our journey into the world of homemade pizza.",
       },
-      { title: "About Us | Slice of Life Pizza Blog" },
-      { property: "og:title", content: "About Us | Slice of Life Pizza Blog" },
-      {
-        property: "og:description",
-        content:
-          "Learn about us, the pizza-obsessed couple behind Slice of Life pizza blog, and our journey into the world of homemade pizza.",
-      },
-      {
-        property: "og:image",
-        content: "https://perfectslice.netlify.app/og/og_about.png",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://perfectslice.netlify.app/about" },
+      { title: "About Us | The Perfect Slice" },
     ],
   }),
 });

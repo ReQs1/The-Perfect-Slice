@@ -23,27 +23,12 @@ export const Route = createFileRoute(
   head: (ctx) => ({
     meta: [
       {
-        title: `${formatSlug(ctx.params.slug)} | Slice of Life`,
+        title: `${formatSlug(ctx.params.slug)} | The Perfect Slice`,
       },
       {
         name: "description",
         content:
-          "Discover pizza recipes, techniques and tips on Slice of Life Pizza Blog",
-      },
-
-      {
-        property: "og:title",
-        content: `${formatSlug(ctx.params.slug)} | Slice of Life`,
-      },
-      {
-        property: "og:description",
-        content:
-          "Discover pizza recipes, techniques and tips on Slice of Life Pizza Blog",
-      },
-      { property: "og:type", content: "article" },
-      {
-        property: "og:url",
-        content: `https://sliceoflife.pizza/posts/${ctx.params.slug}`,
+          "Discover pizza recipes, techniques and tips on The Perfect Slice Pizza Blog",
       },
     ],
   }),

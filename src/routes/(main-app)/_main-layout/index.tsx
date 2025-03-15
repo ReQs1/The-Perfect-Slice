@@ -13,37 +13,7 @@ export const Route = createFileRoute("/(main-app)/_main-layout/")({
         content:
           "Discover delicious pizza recipes, dough-making techniques, and topping ideas from passionate home pizza makers. Join us on our pizza-making journey!",
       },
-      { title: "Slice of Life | Pizza Recipes, Tips & Techniques" },
-      {
-        property: "og:title",
-        content: "Slice of Life | Pizza Recipes, Tips & Techniques",
-      },
-      {
-        property: "og:description",
-        content:
-          "Discover delicious pizza recipes, dough-making techniques, and topping ideas from passionate home pizza makers.",
-      },
-      {
-        property: "og:image",
-        content: "https://perfectslice.netlify.app/og/og_main.png",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://perfectslice.netlify.app/" },
-
-      { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "Slice of Life | Pizza Recipes, Tips & Techniques",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Discover delicious pizza recipes, dough-making techniques, and topping ideas from passionate home pizza makers.",
-      },
-      {
-        name: "twitter:image",
-        content: "https://perfectslice.netlify.app/og/og_main.png",
-      },
+      { title: "The Perfect Slice" },
     ],
   }),
 });

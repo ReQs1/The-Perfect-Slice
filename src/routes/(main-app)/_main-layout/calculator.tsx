@@ -12,25 +12,7 @@ export const Route = createFileRoute("/(main-app)/_main-layout/calculator")({
         content:
           "Use our easy pizza dough calculator to get the perfect dough recipe. Calculate ingredients based on desired dough balls, size, and hydration.",
       },
-      { title: "Pizza Dough Calculator | Slice of Life" },
-      {
-        property: "og:title",
-        content: "Pizza Dough Calculator | Slice of Life",
-      },
-      {
-        property: "og:description",
-        content:
-          "Use our easy pizza dough calculator to get the perfect dough recipe.",
-      },
-      {
-        property: "og:image",
-        content: "https://perfectslice.netlify.app/og/og_calculator.png",
-      },
-      { property: "og:type", content: "website" },
-      {
-        property: "og:url",
-        content: "https://perfectslice.netlify.app/calculator",
-      },
+      { title: "Pizza Dough Calculator | The Perfect Slice" },
     ],
   }),
 });
