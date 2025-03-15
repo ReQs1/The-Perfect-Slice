@@ -22,7 +22,10 @@ export const Route = createFileRoute("/(main-app)/_main-layout/calculator")({
         content:
           "Use our easy pizza dough calculator to get the perfect dough recipe.",
       },
-      { property: "og:image", content: "/og/og_calculator.png" },
+      {
+        property: "og:image",
+        content: "https://perfectslice.netlify.app/og/og_calculator.png",
+      },
       { property: "og:type", content: "website" },
       {
         property: "og:url",
